@@ -39,3 +39,27 @@ class Interpolation:
                 y += (f_i * w)
             return y
         return f_lagrange
+
+    def piecewise_linear(self, start, end, intervals=20):
+        range_end = intervals + 1
+        h = (end - start) / intervals
+        inter_points = [start + h * i for i in range(range_end)]
+
+        def f_piecewise(x):
+            y = 0
+            flag = False
+            for i, x_i in enumerate(inter_points[:-1]):
+                left = x_i
+                right = inter_points[i+1]
+                if x == left:
+                    y = self.func(left)
+                    flag = True
+                elif x == right:
+                    y = self.func(right)
+                    flag = True
+                elif left < x < right:
+                    y = (x - right) / (left - right) * self.func(left) + (x - left) / (right - left) * self.func(right)
+                if flag:
+                    break
+            return y
+        return f_piecewise

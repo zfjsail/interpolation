@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 
 def vis_func(f, start, end, name, intervals=1000):
     x_range = np.linspace(start, end, intervals)
-    y_range = f(x_range)
+    y_range = [f(x) for x in x_range]
+    # y_range = f(x_range)
     plt.plot(x_range, y_range)
     plt.title(name)
     out_dir = 'out'
