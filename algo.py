@@ -59,6 +59,7 @@ class Interpolation:
                     flag = True
                 elif left < x < right:
                     y = (x - right) / (left - right) * self.func(left) + (x - left) / (right - left) * self.func(right)
+                    flag = True
                 if flag:
                     break
             return y
