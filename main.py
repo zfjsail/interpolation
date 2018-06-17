@@ -1,3 +1,4 @@
+import numpy as np
 from algo import Interpolation
 from vis import vis_func
 
@@ -10,6 +11,9 @@ if __name__ == '__main__':
     start = -1
     end = 1
     itp = Interpolation(runge)
-    f_newton = itp.newton(start, end)
+    # f_newton = itp.newton(start, end)
     vis_func(runge, start, end, 'runge')
-    vis_func(f_newton, start, end, 'runge_newton')
+    # vis_func(f_newton, start, end, 'runge_newton')
+    lang_xrange = [np.cos((2*i+1)/42*np.pi) for i in range(21)]
+    f_lang = itp.lagrange(lang_xrange)
+    vis_func(f_lang, start, end, 'langrange')

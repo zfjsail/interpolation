@@ -25,3 +25,17 @@ class Interpolation:
                 y += w * a[i, 0]
             return y
         return f_newton
+
+    def lagrange(self, x_range):
+        def f_lagrange(x):
+            x_subs = [x - x_i for x_i in x_range]
+            y = 0
+            for i, x_i in enumerate(x_range):
+                f_i = self.func(x_i)
+                w = 1.
+                for j, x_j in enumerate(x_range):
+                    if j != i:
+                        w *= (x_subs[j] / (x_i - x_j))
+                y += (f_i * w)
+            return y
+        return f_lagrange
